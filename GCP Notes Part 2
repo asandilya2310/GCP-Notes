@@ -1,0 +1,77 @@
+There are many ways to interact with GCP.
+It can be run on a browser so you don't need to install anything.
+You can also install the SDK (Software Development Kit)
+SDK firstly contains a collection of client libraries that your app can use to interact with the GCP services.
+Secondly, it consists of a set of command-line tools like gcloud, gsutil, bq, and kubectl.
+Mostly used is gcloud which is used for managing all the services other than storage, bigquery, and kubernetes.
+Command-line tools can also be used from inside the browser as well without installing any SDK.
+The easiest way is by using the gcp console (console.cloud.google.com)
+Each region contains at least 3 zones.
+The region is chosen in such a way that it is the closest to the people using the VM.
+Preemptible instance costs 70% less than normal instances, but they can only run for 24 hours after which it resets. It can also be removed anytime without any warning. Best suitable for batch jobs. A batch job is a scheduled program that is assigned to run on a computer without further user interaction.
+The command-line interface helps you to create resources more quickly compared to the console.
+Standard Environment in App Engine is default and it will not run any VMs to serve the app you hosted unless it receives more requests. So you won't be charged if traffic is zero.
+You cant disable your app in the app engine via the command line, you need to do it via console.
+Apart from computing, storage, and networking, GCP offers other services as well.
+There are various migration services. One of them is Anthos, which allows you to migrate to containers.
+But when it comes to a large amount of data, the best way to migrate is “TRANSFER APPLIANCE”
+The transfer appliance is shipped to you, you transfer your data into it, and it is shipped back to google.
+GCP provides various services in AI and ML as well. Alphago software defeated the best go board players in the world.
+When it comes to AI and ML, it mainly focuses on 4 categories, SIGHT, LANGUAGE, CONVERSATION, and STRUCTURED DATA.
+For sight, GCP has Vision API and Video Intelligence API.
+For Language, GCP has Translation API, and NLP API.
+For Conversation, GCP has Text to Speech and Speech to Text API and Dialogflow.
+For Structured data, GCP has Recommendation AI and Cloud Inference API.
+All these services are trained on general datasets, hence might not serve your specific needs, hence you need to build custom models. You can use the AutoML suite or the AI platform suite.
+Another important service is Data Analytics, which focuses on 4 main categories, INGEST, STORE, PROCESS, and VISUALIZE.
+INGEST: Pub/Sub
+STORE: BigQuery (for interactive analytics like running queries on your data), Bigtable (for high-speed automated analytics)
+PROCESS: DataProc (Hadoop, Spark), Dataflow (Apache Beam), DataPrep (Data Processing without any code which uses Dataflow under the hood)
+VISUALIZER: DataStudio (free), Looker (sophisticated and paid)
+GCP has IOT Services
+GCP has DevOps Services, Cloud Build helps you to create Continuous Integration / Continuous Deployment Pipelines.
+Another service is, Cloud CDN for efficient content delivery.
+Cloud Load Balancing helps in balancing traffic.
+Cloud Armor can be integrated with services like Cloud Load Balancing to avoid DOS Attacks.
+Cloud IAM assigns roles, policies, permissions, etc to specific users and resources.
+Cloud Key Management Service(KMS) manages encryption keys in GCP.
+Similarly, GCP also has a Secret Manager.
+There are many more services, you can check them out by typing them out in the search bar in the google cloud console.
+Compared to App Engine, Compute Engine has more flexibility.
+Once you deploy an app, you need to maintain them. GCP provides various management services: Cloud Monitoring (formerly known as stack driver), Cloud Logging (Central place to search for all logs of all resources), Error Reporting, Cloud Trace, Cloud Debugger, and Cloud Profiler.
+Security Command Center gathers security and compliance information in one place.
+Cloud Deployment Manager, can automatically deploy your resources as per your configuration.
+GCP Compute Offerings: Compute Engine, App Engine, Cloud Run, Kubernetes Engine, Cloud Functions.
+GCP Storage Offerings: Cloud Storage (Unstructured Objects), Filestore (Traditional File Storage), Cloud SQL (Relational), Cloud Spanner (massively scalable, Relational+nosql benefits but it's relational), Bigtable (NoSQL, for large analytical workloads), Firestore(NoSQL, client-side web and mobile apps), Firebase (NoSQL, sync user data realtime), Memorystore (NoSQL. speed up apps using caching), BigQuery (GCP DataWarehouse)
+GCP Network Offerings: VPC, VPC Network Peering, Cloud VPN, Cloud Interconnect, Peering.
+GCP Migration Offerings: VMware Engine, Migration for Compute Engine, Anthos, Transfer Appliance.
+Let’s say you have 2 Dual Core CPUs at a physical location, then it roughly translates into 8 Virtual CPUs, given vCPU is implemented by Intel Xeon Processor, and it has 2 hyper threads. Therefore, the number of cores must be multiplied by the number of hyper threads i.e 2 to get the number of vCPUs. 2 Dual Core CPUs thus need 8 vCPUs and a single Dual Core CPU needs 4 vCPUs.
+There are various discounts in GCP. Firstly, preemptible VM Instances cost around 70% less. Secondly, Committed use discounts reduce costs by up to 57%, it's basically buying a 1-year or 3-year contract. Thirdly, GCP allows you to have these discounts without any long-term contracts, which is called Sustained User Discounts, which starts after the instance runs for more than 25% of the month. Max discount you get is 30% if the instance runs the entire month.
+Google Cloud Directory Sync can help you migrate your User Directory to the cloud for authentication systems.
+3 Basic roles in GCP are Owner, Editor, and Viewer. There are also fine-grained predefined roles for individual resources as well as Custom Roles.
+Few principles were followed while setting up roles and permissions: Principle of least privilege (Assign roles with the least permissions required for the people to do what they need), Assign roles to groups instead of individuals whenever possible (Easier management and consistent privileges), Keep a tight control on wh can add members to groups and change policies, Audit all policy changes bu checking the cloud audit logs.
+GCP is very strong in its default encryption policies.
+GCP controls access using: IAM, ACL, Signed URL, Firebase Security Rules, and Signed Policy Docs.
+Access Control Lists (ACL) specify who has access to cloud storage buckets and objects in buckets. They are fine-grained.
+IAM permissions work at the project level.
+Always try to use either IAM or ACL to avoid conflicts.
+GCP encrypts the data at rest as well as in-flight data.
+Moving data is called in-flight data and in most cases, all the services in GCP are accessed by API and this API communication is encrypted using SSL/TLS channels.
+GCP encrypts all the data at rest by default! There are 2 layers of data encryption at rest, the data is divided into chinks and the first layer encrypts the chunks with a DEK (Data Encryption Key) and the second layer encrypts the chunks with a KEK (Key Encryption Key | AES-256)
+Keys can be managed in two ways: Customer managed (uses cloud KMS — Key Management Service) and Customer Supplied Encryption Keys.
+Layers in GCP: Organization, Folder, Project, Network, Subnetwork, Instances.
+A network belongs to only one project, a subnet belongs to only one network, and an instance belongs to only one subnet.
+Instances in the same subnet and the subnets within the same network can communicate with each other easily.
+By default instances in a subnet can connect to GCP services via the internet.
+By enabling Private Google Access in a subnet, then the instances will connect to the GCP services via Google’s network using Internal IP.
+Cross Project Connections: Internet, VPC Network Peering, Shared VPC.
+Connecting over the internet is slower, less secure, and expensive compared to VPC Network peering and Shared VPC.
+The simplest way of cross-project connection is VPC Network Peering, allowing two VPCs to connect over an RFC1918 space, they don't need public IP addresses, They communicate over the google network. Not only projects you can also connect VPCs across organizations, however, but both organizations must also set up a peering association to make this work. Also, it shouldn't have any overlapping IP addresses to make this work (Eg: 10.1.0.0/24 and 10.2.0.0/24 are not overlapping)
+Shared VPC is a more complicated option. Basically means the instances in different projects can share the same network (Eg: If you want to enforce the same firewall rules across all projects, then maybe you can use this method). To set it up, one project must be a host project and the other one must be a service project. The host project contains the shared VPC, and instances in the service project can use the subnets in the shared VPC.
+Cloud Interconnect has Dedicated Interconnect and Partner Interconnect.
+Dedicated Interconnect connects in a colocation facility with a google pop.
+Partner Interconnect instead of google pop you connect to the service provider. Min 50GBPS.
+Peering has 2 methods Direct Peering and Carrier Peering.
+Direct Peering: connects in a colocation facility with a google pop.
+Carrier Peering: instead of google pop you connect to the service provider.
+Hence the difference between Cloud Interconnect and Peering is that Interconnect provides a direct connection to VPC and better control. Peering is Completely Free and only has basic routing.
