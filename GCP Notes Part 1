@@ -1,0 +1,60 @@
+Google Cloud Platform is a cloud service provider that individuals and organizations use to build, host, and deliver applications.
+For most applications, you need 3 core elements: Compute, Storage, and Networking.
+One of the most common ways to run an application on GCP is using a Virtual Machine (VM).
+In GCP, the service which helps in creating and managing Virtual Machines is known as Compute Engine.
+Virtual Machines can be based on Windows/Linux.
+If you currently have an application running on a Windows/Linux on-premise device, then you can use “lift & shift migration”.
+Compute Engine is IAAS (Infrastructure as a Service), cuz it runs traditional IT compute resources as a service.
+GCP also offers a PAAS offering (Platform as a Service), and it's called an App Engine.
+App Engine lets you host Mobile and Web applications without worrying about the underlying infrastructure.
+All you need to do is upload your code into the App Engine, and GCP will take care of everything else. It even scales up and down automatically.
+If traffic is 0, then the underlying infrastructure scales down the VM to zero until the traffic comes back. Also, no charge is billed when there is no traffic.
+But you can only use App Engine if you have a Mobile or Web App.
+If you have any other app, then you will have to use VM (Compute Engine)
+One of the hottest technology is Containers.
+Containers are like Virtual Machines without Operating systems.
+They contain their own environment with their dependencies, 3rd party packages, and so on as a requirement file predefined.
+They are very lightweight compared to VM.
+In fact, they run inside VM
+The simplest way to run a container is using CLOUD RUN.
+We can also use DOCKER.
+But DOCKER and CLOUD RUN cannot be used for complex applications which may involve multiple containers.
+If you have a complex app with multiple containers then it's better to use Google Kubernetes Engine (GKE).
+GKE is a container orchestration tool that makes it easier to deploy and manage multi-container apps.
+Another hottest technology out there is: SERVERLESS
+The term serverless might be a little misleading as it still requires servers to run. It just means that you don't need to know anything about the underlying servers that run your code, pretty much like App Engine.
+Hence, we can say that App Engine or Cloud Run is Serverless.
+But the most serverless stuff in GCP is Cloud Functions.
+While App Engine and Cloud Run are used to deploy apps. Cloud functions are used to deploy individual functions and they are Event-Driven.
+Looking at storage, firstly we have cloud storage.
+Cloud storage is also known as object storage.
+It does not have a hierarchical file structure.
+It has a flat structure.
+It’s used for unstructured data like images, videos, logs, etc
+It has various classes of storage: Standard Storage (Frequently Accessed, High Cost), Nearline Storage (Accessed Once in a month, cheaper than standard), Coldline Storage (Access Once a quarter, cheaper than Nearline), Archival Storage (Accessed less than once a year, Least Cost)
+However, unlike other cloud service providers, in GCP all four storage classes' access time is the same.
+Secondly, we have Filestore.
+If you need more traditional storage with a hierarchial structure and NFS compatibility.
+Moving on to databases, if you are using MySQL, PostgreSQL, or SQL SERVER, then it is best to use CLOUD SQL.
+CLOUD SQL is relational in nature.
+The problem with relational databases is that it's very hard to scale them to handle high volume and high-speed data.
+To solve this problem we have NOSQL DATABASES.
+NoSQL DB can handle massive amounts of data, but they are used for much simpler use cases like storing key-value pairs.
+Few NOSQL DATABASES that GOOGLE offers are BigTable (for large analytical workloads), FIRESTORE(build clientside mobile and web apps), FIREBASE(sync data between users in real-time), MEMORY STORE(speed up using caching)
+Finally, we have another database that takes the benefits of both relational and NoSQL databases together: CLOUD SPANNER.
+CLOUD SPANNER is a relational database that is massively scalable but it's very costly.
+Then we have BIGQUERY, which is used when you need a data warehouse, and it's good for OLAP and Business Intelligence.
+Coming to NETWORKING, when you create a VM inside GCP, you will have to put it inside a VPC (Virtual Private Cloud)
+Each VM in a VPC has an IP Address.
+The VMs can communicate with each other within the same VPC.
+Within the VPC you can also create subnets, and place each VM in each of the subnets separately. You will have to use VPC ROUTING to control the traffic between the VMs.
+By default, all the outbound traffic from a VM inside a VPC/Subnet is allowed, but inbound traffic needs an external IP assigned to the VM.
+If you want to communicate between two VMs in two different VPCs connect the VPC using VPC Network Peering.
+If you want to create a secure connection between an On-premises network to one of your VPCs then you need to use CLOUD VPN.
+You can use CLOUD INTERCONNECT/PEERING as well.
+CLOUD VPN sends encrypted traffic over the internet.
+Cloud Interconnect/Peering communicates over a private dedicated connection between your site and Google’s network.
+Generally, Cloud Interconnect is costlier than VPN as it provides a higher speed and reliability because it has a dedicated connection.
+Peering is free, but not recommended as it doesn't really fall under GCP’s vision.
+There are various other networks as well like, Cloud Router, Cloud Armor, Cloud DNS, Cloud Load Balancing, Cloud Firewall, Partner Interconnect, etc.
+Google also provides a wide variety of other services outside of computing, storage, and networking categories, such as AI, DevOps, etc.
