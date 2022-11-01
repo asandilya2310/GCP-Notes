@@ -1,0 +1,57 @@
+Any VPC network must have at least one subnet in it before the network can be used, it's because VPC networks themselves do not have any IP address ranges associated with them, but subnets do.
+Two types of VPC: Auto Mode, and Custom Mode.
+Auto mode: results in one subnet from each region being created automatically within the network. IP range will automatically be assigned in a 10.128.0.0/9 range. If you are to add any subnet manually, then the IP range of that subnet must be outside this range.
+Custom mode: subnets are not created automatically. full control over IP ranges.
+GCP Firewalls allow or deny traffic in or out of VM instances, they are always enforced. While creating the firewall, the higher the priority no lower the priority, and vice versa (Eg: 1000 has a lower priority compared to 100)
+Legacy networks do not support subnets or VPC networks.
+When you connect 2 VPC networks using Cloud VPN at least one of the networks need to be a custom mode network, else it may cause an overlap problem as auto mode VPC networks mostly uses same ranges → 10.128.0.0/9.
+Two types of VPN: Classic VPN and HA VPN
+Classic VPN allows dynamic and static routing.
+HA VPN only allows dynamic routing.
+Static Routing: Policy-based and Route-based.
+In Policy based static routing, local and remote IP ranges must be defined.
+In Rout based static routing, remote IP ranges alone must be defined.
+Dynamic routing controls all the cloud routers dynamically.
+While creating a VPN you must configure the VPN Gateway and VPN Tunnel.
+VPN Gateway serves as an endpoint for a VPN Tunnel.
+For best performance, the VPN Gateway and the VPN Tunnel must be located in the same region as the GCP resource to be accessed.
+Creating a compute instance from an image includes a regular image and a shielded image. the shielded image will have advanced security features. Other types are public images (provided by Google, opensource, etc, and by default, all projects have access to these public images), Custom Images (belongs to only a specific project), Shared images (if a user shares an image), Snapshot Image (Backup Boot persistent disk), and Container Image.
+An ephemeral address won't change even if the VM restarts. But it may change if it's deleted or recreated (for this case you can use a static address)
+Disks in compute instance: Zonal Persistent Disks, Regional Persistent Disks or Local SSD.
+Zonal Persistent Disks: HDD and SSD.
+Regional Persistent Disks: They are similar to Zonal Persistent Disks but they cannot be used as boot disks, they are used as attachments to another VM instance in the event of a zonal failure. You can create it from snapshots, not images.
+Local SSD Disks: they are physically attached to the server and provide Higher performance, low latency, and IOPS.
+You can control the availability of instances during situations like maintenance. Live Migration to another instance or temporary Shut Down can be practiced. By default, it's always live migration.
+In Load Balancing, the backend configuration specifies what the load balancer will be load balancing. The frontend configuration specifies the public IP of the load balancer and the ports to load balance.
+You can create public SSH keys using PuttyGen.
+Monitoring Tools: Cloud Monitoring & Cloud Operations.
+Cloud DNS is Google’s global domain name service. It has everything you need to manage, and serve your domains. It's fully managed and highly scalable.
+Cloud DNS can be used to map public IP addresses to public domain names, it can also be used to create private domain names.
+A DNS Zone is a container of DNS Records. Two types of zones are: public and private.
+Public zones are visible to the whole internet.
+Private zones are visible within the VPC network.
+A combination of public and private is called Split Horizon DNS.
+Public DNS Zones can also be configured with DNSSEC, it helps in avoiding redirects to harmful servers. Using DNSSEC you can verify the source of the record and also verify it's not tampered with in transit.
+Zones can also be used for DNS forwarding, if you want the given domain name to be resolved by another DNS server, then the request is forwarded.
+DNS Peering is similar to DNS forwarding. But unlike Peering, forwarding doesn't allow you to send requests between VPCs.
+DNS Peering can do internal to internal routing.
+DNS forwarding can do internal to external and vice versa routing.
+Note that VPC Peering and DNS Peering are different.
+3 main approaches to computing in GCP: App Engine, Compute Engine, and Kubernetes Engine. We also have other lightweight specialized compute options like Cloud Functions and Cloud Run.
+Compute Engine is for deploying VMs.
+App Engine is a serverless product for running apps or code without thinking about VMs. You use runtimes like python, ruby, etc. There are two types of environments: Standard and Flexible.
+Standard App Engine only supports Python, Java, Nodejs, PHP, Ruby and GO, you cant modify the environment afterward. You can’t SSH into these instances, it’s more fixed like a sandbox. Hence the tradeoff of using Standard Environment is limited ability to alter the environment over time.
+Flexible App Engine supports the alteration of the environment over time using Docker Files. It supports SSh and It supports any language. Hence the Flexible Environment does less for you, giving you more manual control.
+Kubernetes is used for container orchestration. Google Kubernetes Engine (GKE), helps you manage Kubernetes cluster, scale pods, etc helping you orchestrate your containers, but it is fairly complex and hard to debug. GKE runs on top of Compute Engine, as GKE Nodes are basically VMs.
+Cloud Functions let you define single-purpose standalone functions that respond to specific events that it is watching.
+Cloud Run is also a serverless option like Cloud Function but instead of running code, you create containers.
+Compute Engine Hardware Family types: Compute Optimized, Memory Optimized, and Sole-Tenant.
+Compute Optimized offers the highest performance per core.
+Memory Optimized offers lots of memory in a single VM.
+Sole-Tenant isolates your VMs and workloads @physicalservers.
+We also have custom and preemptible machine types.
+Custom machine type, the features like memory and number of vCPUs can be set manually.
+Preemptible VM Instances are short-lived that run up to 24 hours at a time. Not suitable for fault-tolerant workloads. They are great for batch processing and short jobs.
+Preemptible instances are not the only things that play around with discounts, we also have Sustained User Discounts and Committed User Discounts.
+Committed Use Discounts are basically discounts given to users if they are ready to pay upfront for the cloud services for a certain amount of time like 1 year or 3 years etc. You get around 50–70% discount. However, you can pay monthly, but if you stop using the instance in the middle, you still have to pay for the full year.
+Sustained Use Discounts are applied automatically when you run a VM instance or a group of VM instances for a certain percentage of time over the course of a month. Eg: You may get around a 10% discount if you run the VM instances for about 25% of the month. You can get up to a 30% discount if you run the VM 100% of the month with no breaks. The only services in GCP that do not get sustained use discounts are APP ENGINE FLEXIBLE ENVIRONMENT and CLOUD DATAFLOW VMs.
